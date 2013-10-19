@@ -1,5 +1,4 @@
 class Yelp
-  # attr_accessible :title, :body
-  
-  
+  attr_accessible :test
+
 end
