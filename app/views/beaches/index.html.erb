@@ -1,3 +1,9 @@
 <% @response.each do |x| %>
-  <p><%= x['name'] %></p>
+  <div>
+    <img src="<%= x['image_url'] %>">
+    <h2><%= x['name'] %></h2>
+     <img src="<%= x['rating_img_url'] %>">
+     <p><%= x['review_count']%> Yelp ratings</p>
+     Current Temp: <%= weather(x['location']['postal_code']) %>
+  </div>
 <% end %>
