@@ -10,18 +10,18 @@ class BeachesController < ApplicationController
     
     y = Information.new
     @response = y.get_beach_list(@latitude, @longitude)
-    p @response
+    
   end
   
   def show
-    @beach = Beach.find_by_yelp_id(params[:id])
-    
-    client = Yelp::Client.new
-    
-    request = Yelp::V2::Business::Request::Id.new(
-              :yelp_business_id => @beach.yelp_id)
-    @response = client.search(request)
-    p @response
+    # @beach = Beach.find_by_yelp_id(params[:id])
+    # 
+    # client = Yelp::Client.new
+    # 
+    # request = Yelp::V2::Business::Request::Id.new(
+    #           :yelp_business_id => @beach.yelp_id)
+    # @response = client.search(request)
+    # p @response
     
     # client = Wikipedia::Client.new
     # @wiki_page = client.find( @beach.name )

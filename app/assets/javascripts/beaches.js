@@ -3,16 +3,16 @@ if (!navigator.geolocation){
 }
 
 navigator.geolocation.getCurrentPosition(function(position) {
-  var lat = position.coords.latitude;
-  var lon = position.coords.longitude;
+  $("#lat").val(position.coords.latitude);
+  $("#long").val(position.coords.longitude);
   
-  $.ajax({
-    url: "/beaches",
-    type: "POST",
-    data: {
-      latitude: lat,
-      longitude: lon
-    }
-  })
+  // $.ajax({
+  //   url: "/beaches",
+  //   type: "POST",
+  //   data: {
+  //     latitude: lat,
+  //     longitude: lon
+  //   }
+  // })
 
 });
