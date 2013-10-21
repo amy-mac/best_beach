@@ -1,9 +1,16 @@
 class BeachesController < ApplicationController
   
   def index
-    y = Information.new
-    @response = y.get_beach_list(37.788022, -122.399797)
 
+  end
+  
+  def create
+    @latitude = params[:latitude]
+    @longitude = params[:longitude]
+    
+    y = Information.new
+    @response = y.get_beach_list(@latitude, @longitude)
+    p @response
   end
   
   def show

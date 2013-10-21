@@ -1,4 +1,18 @@
+if (!navigator.geolocation){
+  output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+}
+
 navigator.geolocation.getCurrentPosition(function(position) {
   var lat = position.coords.latitude;
-  var long = position.coords.longitude;
+  var lon = position.coords.longitude;
+  
+  $.ajax({
+    url: "/beaches",
+    type: "POST",
+    data: {
+      latitude: lat,
+      longitude: lon
+    }
+  })
+
 });
