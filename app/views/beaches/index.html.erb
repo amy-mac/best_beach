@@ -1,7 +1,19 @@
-<form action="/beaches" method="post">
-  Lat
-  <input type="string" name="latitude" id="lat"><br>
-  Long
-  <input type="string" name="longitude" id="long"><br>
-  <input type="submit">
-</form>
+<div class="row">
+  <h1>Welcome to BestBeachToday!</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <form action="/beaches" method="post" class="form-inline text-center">
+      <div class="form-group">
+        <label class="sr-only" for="lat">Latitude</label>
+        <input type="string" name="latitude" id="lat" class="form-control" placeholder="latitude">
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="long">Longitude</label>
+        <input type="string" name="longitude" id="long" class="form-control" placeholder="longitude">
+      </div>
+      <input type="submit" class="btn btn-default">
+    </form>
+  </div>
+</div>
