@@ -2,9 +2,15 @@
   <h1><%= @beach.name %></h1>
   <img src="<%= @beach.main_image %>">
 </div>
+
 <div class="row">
-  <%= @response['location']['display_address'][0] %><br>
-  <%= @response['location']['display_address'][1] %><br>
-  <%= @response['location']['display_address'][3] %>
-  
+  <address>
+    <%= @response['location']['display_address'][0] %><br>
+    <%= @response['location']['display_address'][1] %><br>
+    <%= @response['location']['display_address'][3] %>
+  </address>
+</div>
+
+<div class="row">
+  Travel time: <%= @results['routes'][0]["legs"][0]["duration"]["text"] %>
 </div>
