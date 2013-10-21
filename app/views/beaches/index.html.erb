@@ -1,9 +1,12 @@
+
+<div class="row">
 <% @response.each do |x| %>
-  <div>
-    <img src="<%= x['image_url'] %>">
-    <h2><%= x['name'] %></h2>
+  <div class="col-sm-4 col-md-3 text-center panel panel-default panel-body">
+    <img src="<%= x['image_url'] %>" class="img-circle">
+    <h2><%= link_to x['name'], beach_path(x['id']) %></h2>
      <img src="<%= x['rating_img_url'] %>">
      <p><%= x['review_count']%> Yelp ratings</p>
      Current Temp: <%= weather(x['location']['postal_code']) %>
   </div>
 <% end %>
+</div>
