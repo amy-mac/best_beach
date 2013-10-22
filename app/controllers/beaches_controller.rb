@@ -15,6 +15,7 @@ class BeachesController < ApplicationController
     y = Information.new
     @response = y.get_beach_list(@latitude, @longitude)
     
+    @origin = @latitude + "," + @longitude
   end
   
   def show

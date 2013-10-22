@@ -11,6 +11,8 @@
   </address>
 </div>
 
-<div class="row">
-  Travel time: <%= @results['routes'][0]["legs"][0]["duration"]["text"] %>
-</div>
+<% unless @results['routes'].empty? %>
+  <div class="row">
+    Travel time: <%= @results['routes'][0]["legs"][0]["duration"]["text"] %>
+  </div>
+<% end %>

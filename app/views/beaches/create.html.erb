@@ -1,11 +1,26 @@
 <div class="row">
-<% @response.each do |x| %>
-  <div class="col-sm-4 col-md-3 text-center panel panel-default panel-body">
-    <img src="<%= x['image_url'] %>" class="img-circle">
-    <h2><%= link_to x['name'], beach_path(x['id']) %></h2>
-     <img src="<%= x['rating_img_url'] %>">
-     <p><%= x['review_count']%> Yelp ratings</p>
-     Current Temp: <%= weather(x['location']['postal_code']) %>
-  </div>
-<% end %>
+  <% @response.each do |x| %>
+  
+    <div class="col-sm-4 col-md-3 text-center panel panel-default panel-body">
+      <img src="<%= x['image_url'] %>" class="img-circle">
+    
+      <h2><%= link_to x['name'], beach_path(x['id']) %></h2>
+    
+      <img src="<%= x['rating_img_url'] %>">
+    
+      <p><%= x['review_count']%> Yelp ratings</p>
+    
+      <p>Current Temp: <%= weather(x['location']['postal_code']) %></p>
+        
+      <% @destination = get_destination(x['location']['address'][0], x['location']['postal_code']) %>
+        
+      <% unless @destination.empty? %>
+        <% @results = google_api(@origin, @destination) %>
+        <% unless @results['routes'].empty? %>
+          <p><%= @results['routes'][0]["legs"][0]["duration"]["text"] %> away</p>
+        <% end %>
+      <% end %>
+
+    </div>
+  <% end %>
 </div>
