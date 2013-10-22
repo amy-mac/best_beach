@@ -9,8 +9,10 @@
       <img src="<%= x['rating_img_url'] %>">
     
       <p><%= x['review_count']%> Yelp ratings</p>
-    
-      <p>Current Temp: <%= weather(x['location']['postal_code']) %></p>
+      
+      <% if x['location']['postal_code'] %>
+        <p>Current Temp: <%= weather(x['location']['postal_code']) %></p>
+      <% end %>
         
       <% @destination = get_destination(x['location']['address'][0], x['location']['postal_code']) %>
         

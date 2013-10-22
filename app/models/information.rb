@@ -1,9 +1,10 @@
 class Information
-  attr_accessor :get_beach_list, :insert_beaches_into_db, :response
+  attr_accessor :get_beach_list, :insert_beaches_into_db, :get_beach, :response1, :response2
   
   def initialize
     @client = Yelp::Client.new
-    @response = []
+    @response1 = []
+    @response2 = {}
   end
   
   def get_beach_list(lat, long)
@@ -25,4 +26,9 @@ class Information
   
   end
 
+  def get_beach(yelp_id)
+    request = Yelp::V2::Business::Request::Id.new(
+      :yelp_business_id => yelp_id)
+    @response = @client.search(request)
+  end
 end

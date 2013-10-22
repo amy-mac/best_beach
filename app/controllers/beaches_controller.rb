@@ -21,11 +21,8 @@ class BeachesController < ApplicationController
   def show
     @beach = Beach.find_by_yelp_id(params[:id])
     
-    client = Yelp::Client.new
-    
-    request = Yelp::V2::Business::Request::Id.new(
-              :yelp_business_id => @beach.yelp_id)
-    @response = client.search(request)
+    y = Information.new
+    @response = y.get_beach(@beach.yelp_id)
     
     @origin = COORDS[0] + "," + COORDS[1]
     @destination = []
