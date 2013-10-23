@@ -1,9 +1,9 @@
 module BeachesHelper
   
   def weather(postal_code)
-    client = YahooWeather::Client.new
-    response = client.fetch_by_location("#{postal_code}")
-    return "#{response.condition.temp}°#{response.units.temperature}"
+    w = Wunderground.new('5d5c82de5f22fc4e')
+    @weather = w.conditions_and_astronomy_and_hourly_for(postal_code)
+    return @weather
   end
   
   def get_destination(address, zip)
@@ -16,15 +16,6 @@ module BeachesHelper
       @destination << zip
       return @destination.flatten.join
     end
-  end
-  
-  def google_api(origin, dest)
-    directions = Typhoeus.get(
-      "http://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{dest}&sensor=false"
-      )
-      
-    @results = JSON.parse(directions.body)
-    return @results
   end
 
   def mapquest_api(origin, dest)

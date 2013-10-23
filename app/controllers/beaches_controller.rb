@@ -16,6 +16,7 @@ class BeachesController < ApplicationController
     @response = y.get_beach_list(@latitude, @longitude)
     
     @origin = @latitude + "," + @longitude
+    
   end
   
   def show
@@ -36,7 +37,6 @@ class BeachesController < ApplicationController
       )
 
     @results = JSON.parse(@directions.body)
-    p @results
 
     w = Wunderground.new('5d5c82de5f22fc4e')
     @weather = w.conditions_and_astronomy_and_hourly_for(@response['location']['postal_code'])

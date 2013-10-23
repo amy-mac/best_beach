@@ -11,15 +11,19 @@
       <p><%= x['review_count']%> Yelp ratings</p>
       
       <% if x['location']['postal_code'] %>
-        <p>Current Temp: <%= weather(x['location']['postal_code']) %></p>
+        <% @weather = weather(x['location']['postal_code']) %>
+        <p>
+          <img src="<%= @weather['current_observation']['icon_url'] %>">
+          <%= @weather['current_observation']['weather'] %>, <%= @weather['current_observation']['temperature_string'] %>
+        </p>
       <% end %>
         
       <% @destination = get_destination(x['location']['address'][0], x['location']['postal_code']) %>
         
       <% unless @destination.empty? %>
-        <% @results = google_api(@origin, @destination) %>
-        <% unless @results['routes'].empty? %>
-          <p><%= @results['routes'][0]["legs"][0]["duration"]["text"] %> away</p>
+        <% @results = mapquest_api(@origin, @destination) %>
+        <% unless @results['route'].empty? %>
+          <p><%= @results['route']['realTime']/60 %> minutes away</p>
         <% end %>
       <% end %>
 
