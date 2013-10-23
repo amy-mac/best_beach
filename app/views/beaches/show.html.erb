@@ -16,3 +16,17 @@
     Travel time: <%= @results['routes'][0]["legs"][0]["duration"]["text"] %>
   </div>
 <% end %>
+
+<div class="row">
+  <h2>Weather Information</h2>
+
+  <img src="<%= @weather['current_observation']['icon_url'] %>">
+
+  <p><%= @weather['current_observation']['weather'] %>, <%= @weather['current_observation']['temperature_string'] %>, <em>feels like <%= @weather['current_observation']['feelslike_string'] %></em><br>
+    <strong>Relative Humidity:</strong> <%= @weather['current_observation']['relative_humidity'] %><br>
+    <strong>Wind:</strong> <%= @weather['current_observation']['wind_string'] %><br>
+    <strong>UV Index:</strong> <%= @weather['current_observation']['UV'] %> out of 16<br>
+    <a href="<%= @weather['current_observation']['forecast_url'] %>" target="_blank">Full Forecast</a><br>
+    <a href="<%= @weather['current_observation']['image']['link'] %>" target="_blank"><img src="<%= @weather['current_observation']['image']['url'] %>"></a>
+  </p>
+</div>

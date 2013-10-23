@@ -9,7 +9,7 @@ gem 'geocoder'
 gem 'wikipedia-client'
 gem 'json'
 gem 'typhoeus'
-gem 'rb_wunderground'
+gem 'wunderground'
 
 # Gems used only for assets and not required
 # in production environments by default.
