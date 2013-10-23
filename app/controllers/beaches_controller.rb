@@ -16,7 +16,7 @@ class BeachesController < ApplicationController
     @response = y.get_beach_list(@latitude, @longitude)
     
     @origin = @latitude + "," + @longitude
-    
+
   end
   
   def show
@@ -27,16 +27,15 @@ class BeachesController < ApplicationController
     
     # @origin = COORDS[0] + "," + COORDS[1]
     @origin = "37.7798776,-122.3949111"
-    @destination = []
-    @destination << @response['location']['address'][0].split(" ")
-    @destination << @response['location']['postal_code']
-    @destination = @destination.flatten.join(",")
+    @destination = @response['location']['address'][0] + "," + @response['location']['postal_code']
 
-    @directions = Typhoeus.get(
+    @drive_time = Typhoeus.get(
       "http://www.mapquestapi.com/directions/v2/route?key=Fmjtd%7Cluubnu0all%2C7n%3Do5-9u1s0z&from=#{@origin}&to=#{@destination}"
       )
 
-    @results = JSON.parse(@directions.body)
+    @results = JSON.parse(@drive_time.body)
+
+    @directions = "https://maps.google.com/maps?saddr=#{@origin}&daddr=#{@destination}"
 
     w = Wunderground.new('5d5c82de5f22fc4e')
     @weather = w.conditions_and_astronomy_and_hourly_for(@response['location']['postal_code'])

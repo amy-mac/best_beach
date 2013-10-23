@@ -11,7 +11,7 @@
       Cross streets: <%= @response['location']['cross_streets'] %><br>
       <%= @response['location']['city'] %>, <%= @response['location']['state_code'] %> <%= @response['location']['postal_code'] %>
     </address>
-    <p>Directions</p>
+    <a href="<%= @directions %>">Directions</a>
 
     <% unless @results['route'].empty? %>
       <p>
