@@ -26,4 +26,13 @@ module BeachesHelper
     @results = JSON.parse(directions.body)
     return @results
   end
+
+  def mapquest_api(origin, dest)
+    directions = Typhoeus.get(
+      "http://www.mapquestapi.com/directions/v2/route?key=Fmjtd%7Cluubnu0all%2C7n%3Do5-9u1s0z&from=#{origin}&to=#{dest}"
+      )
+
+    @results = JSON.parse(directions.body)
+    return @results
+  end
 end

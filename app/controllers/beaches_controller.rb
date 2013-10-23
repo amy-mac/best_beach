@@ -32,10 +32,11 @@ class BeachesController < ApplicationController
     @destination = @destination.flatten.join(",")
 
     @directions = Typhoeus.get(
-      "http://maps.googleapis.com/maps/api/directions/json?origin=#{@origin}&destination=#{@destination}&sensor=false"
+      "http://www.mapquestapi.com/directions/v2/route?key=Fmjtd%7Cluubnu0all%2C7n%3Do5-9u1s0z&from=#{@origin}&to=#{@destination}"
       )
-      
+
     @results = JSON.parse(@directions.body)
+    p @results
 
     w = Wunderground.new('5d5c82de5f22fc4e')
     @weather = w.conditions_and_astronomy_and_hourly_for(@response['location']['postal_code'])

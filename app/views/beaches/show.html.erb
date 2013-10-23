@@ -11,9 +11,9 @@
   </address>
 </div>
 
-<% unless @results['routes'].empty? %>
+<% unless @results['route'].empty? %>
   <div class="row">
-    Travel time: <%= @results['routes'][0]["legs"][0]["duration"]["text"] %>
+    Travel time: <%= @results['route']['realTime']/60 %> minutes
   </div>
 <% end %>
 
