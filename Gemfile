@@ -4,8 +4,6 @@ gem 'rails', '3.2.14'
 
 gem 'sqlite3'
 gem 'yelpster'
-gem 'geocoder'
-gem 'wikipedia-client'
 gem 'json'
 gem 'typhoeus'
 gem 'wunderground'
