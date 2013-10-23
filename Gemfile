@@ -4,7 +4,6 @@ gem 'rails', '3.2.14'
 
 gem 'sqlite3'
 gem 'yelpster'
-gem 'yahoo_weather'
 gem 'geocoder'
 gem 'wikipedia-client'
 gem 'json'
@@ -27,6 +26,7 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
+  gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'pry'
