@@ -38,7 +38,7 @@ class BeachesController < ApplicationController
     @results = JSON.parse(@directions.body)
 
     w = Wunderground.new('5d5c82de5f22fc4e')
-    @weather = w.conditions_and_hourly_and_tide_for(@response['location']['postal_code'])
+    @weather = w.conditions_and_astronomy_and_hourly_for(@response['location']['postal_code'])
     
     # client = Wikipedia::Client.new
     # @wiki_page = client.find( @beach.name )

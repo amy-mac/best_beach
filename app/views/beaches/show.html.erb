@@ -26,7 +26,9 @@
     <strong>Relative Humidity:</strong> <%= @weather['current_observation']['relative_humidity'] %><br>
     <strong>Wind:</strong> <%= @weather['current_observation']['wind_string'] %><br>
     <strong>UV Index:</strong> <%= @weather['current_observation']['UV'] %> out of 16<br>
-    <a href="<%= @weather['current_observation']['forecast_url'] %>" target="_blank">Full Forecast</a><br>
-    <a href="<%= @weather['current_observation']['image']['link'] %>" target="_blank"><img src="<%= @weather['current_observation']['image']['url'] %>"></a>
+    <strong>Sunset:</strong> <%= @weather['sun_phase']['sunset']['hour'] %>:<%= @weather['sun_phase']['sunset']['minute'] %><br>
+    <strong>Observed location:</strong> <%= @weather['current_observation']['observation_location']['city'] %><br>
+    <a href="<%= @weather['current_observation']['forecast_url'] %>" target="_blank">Full Forecast</a></p>
+    <p><a href="<%= @weather['current_observation']['image']['link'] %>" target="_blank"><img src="<%= @weather['current_observation']['image']['url'] %>"></a>
   </p>
 </div>

@@ -15,6 +15,7 @@ class Information
               :radius_filter => 40000,
               :sort => 2)
     @response = @client.search(request)['businesses']
+    insert_beaches_into_db
   end
 
   def insert_beaches_into_db
