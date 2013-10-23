@@ -1,7 +1,7 @@
 <div class="row">
   <% @response.each do |x| %>
   
-    <div class="col-sm-4 col-md-3 text-center panel panel-default panel-body">
+    <div class="col-sm-6 col-md-4 text-center panel panel-default panel-body">
       <img src="<%= x['image_url'] %>" class="img-circle">
     
       <h2><%= link_to x['name'], beach_path(x['id']) %></h2>

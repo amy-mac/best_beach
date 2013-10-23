@@ -12,6 +12,7 @@ class Information
               :latitude => lat,
               :longitude => long,
               :category_filter => ['beaches'],
+              :limit => 9,
               :radius_filter => 40000,
               :sort => 2)
     @response = @client.search(request)['businesses']
