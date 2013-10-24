@@ -36,4 +36,9 @@ module BeachesHelper
     @results = JSON.parse(directions.body)
     return @results
   end
+
+  def photos_link(location)
+    link = "http://www.flickr.com/search/?q=#{location}&ss=1&ct=0&mt=all&w=all&adv=1"
+    return link
+  end
 end

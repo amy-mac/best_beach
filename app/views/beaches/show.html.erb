@@ -5,13 +5,13 @@
 
 <div class="row">
 
-  <div class="col-sm-4 col-md-4 col-md-offset-1 pull-right panel panel-default panel-body">
+  <div class="col-sm-4 col-md-4 col-md-offset-1 pull-right sidebar">
     <address>
       <%= @response['location']['address'][0] %><br>
       Cross streets: <%= @response['location']['cross_streets'] %><br>
-      <%= @response['location']['city'] %>, <%= @response['location']['state_code'] %> <%= @response['location']['postal_code'] %>
+      <%= @response['location']['city'] %>, <%= @response['location']['state_code'] %> <%= @response['location']['postal_code'] %><br>
+      <a href="<%= @directions %>">Directions</a>
     </address>
-    <a href="<%= @directions %>">Directions</a>
 
     <% unless @results['route'].empty? %>
       <p>
@@ -28,6 +28,7 @@
   </div>
 
   <div class="col-sm-8 col-md-7 pull-left">
+    <p><a href="<%= photos_link(@response['id']) %>">See photos on Flickr</a></p>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -66,10 +67,4 @@
     </p>
   </div>
 
-</div>
-
-<div class="row">
-  <h2>Directions</h2>
-  <div id="map" class="col-sm-12">
-  </div>
 </div>
