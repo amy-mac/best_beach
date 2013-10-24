@@ -1,32 +1,34 @@
-<div class="row">
-  <% @response.each do |x| %>
-  
-    <div class="col-sm-6 col-md-4 text-center panel panel-default panel-body">
-      <img src="<%= x['image_url'] %>" class="img-circle">
+<div class="container">
+  <div class="row">
+    <% @response.each do |x| %>
     
-      <h2><%= link_to x['name'], beach_path(x['id']) %></h2>
-    
-      <img src="<%= x['rating_img_url'] %>">
-    
-      <p><%= x['review_count']%> Yelp ratings</p>
+      <div class="col-xs-12 col-sm-6 col-md-4 text-center well">
+        <img src="<%= x['image_url'] %>" class="img-circle">
       
-      <% if x['location']['postal_code'] %>
-        <% @weather = weather(x['location']['postal_code']) %>
-        <p>
-          <img src="<%= @weather['current_observation']['icon_url'] %>">
-          <%= @weather['current_observation']['weather'] %>, <%= @weather['current_observation']['temperature_string'] %>
-        </p>
-      <% end %>
+        <h2><%= link_to x['name'], beach_path(x['id']) %></h2>
+      
+        <img src="<%= x['rating_img_url'] %>">
+      
+        <p><%= x['review_count']%> Yelp ratings</p>
         
-      <% @destination = get_destination(x['location']['address'][0], x['location']['postal_code']) %>
-        
-      <% unless @destination.empty? %>
-        <% @results = mapquest_api(@origin, @destination) %>
-        <% unless @results['route'].empty? %>
-          <p><%= @results['route']['realTime']/60 %> minutes away</p>
+        <% if x['location']['postal_code'] %>
+          <% @weather = weather(x['location']['postal_code']) %>
+          <p>
+            <img src="<%= @weather['current_observation']['icon_url'] %>">
+            <%= @weather['current_observation']['weather'] %>, <%= @weather['current_observation']['temperature_string'] %>
+          </p>
         <% end %>
-      <% end %>
+          
+        <% @destination = get_destination(x['location']['address'][0], x['location']['postal_code']) %>
+          
+        <% unless @destination.empty? %>
+          <% @results = mapquest_api(@origin, @destination) %>
+          <% unless @results['route'].empty? %>
+            <p><%= @results['route']['realTime']/60 %> minutes away</p>
+          <% end %>
+        <% end %>
 
-    </div>
-  <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

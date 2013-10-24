@@ -1,70 +1,72 @@
-<div class="row">
-  <h1><%= @beach.name %></h1>
-  <img src="<%= @beach.main_image %>">
-</div>
+<div class="container">
+  <div class="row">
+    <h1><%= @beach.name %></h1>
+    <img src="<%= @beach.main_image %>">
+  </div>
 
-<div class="row">
+  <div class="row">
 
-  <div class="col-sm-4 col-md-4 col-md-offset-1 pull-right sidebar">
-    <address>
-      <%= @response['location']['address'][0] %><br>
-      Cross streets: <%= @response['location']['cross_streets'] %><br>
-      <%= @response['location']['city'] %>, <%= @response['location']['state_code'] %> <%= @response['location']['postal_code'] %><br>
-      <a href="<%= @directions %>">Directions</a>
-    </address>
+    <div class="col-sm-4 col-md-4 pull-right well">
+      <address>
+        <%= @response['location']['address'][0] %><br>
+        Cross streets: <%= @response['location']['cross_streets'] %><br>
+        <%= @response['location']['city'] %>, <%= @response['location']['state_code'] %> <%= @response['location']['postal_code'] %><br>
+        <a href="<%= @directions %>">Directions</a>
+      </address>
 
-    <% unless @results['route'].empty? %>
+      <% unless @results['route'].empty? %>
+        <p>
+          <strong>Distance:</strong> <%= @results['route']['distance'] %> miles<br>
+          <strong>Regular Travel Time:</strong> 
+          <%= @results['route']['time']/60 %> minutes<br>
+          <strong>Current Travel time:</strong> 
+          <%= @results['route']['realTime']/60 %> minutes
+        </p>
+      <% end %>
+
+      <p><a href="<%= @response['url'] %>" target="_blank"><img src="<%= @response['rating_img_url'] %>"></a> 
+      <%= @response['review_count'] %> Yelp reviews</p>
+    </div>
+
+    <div class="col-md-8 pull-left">
+      <p><a href="<%= photos_link(@response['id']) %>">See photos on Flickr</a></p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+  </div
+
+  <div class="row">
+    <h2>Weather Information</h2>
+
+    <div class="col-md-6 pull-left">
+      <img src="<%= @weather['current_observation']['icon_url'] %>">
       <p>
-        <strong>Distance:</strong> <%= @results['route']['distance'] %> miles<br>
-        <strong>Regular Travel Time:</strong> 
-        <%= @results['route']['time']/60 %> minutes<br>
-        <strong>Current Travel time:</strong> 
-        <%= @results['route']['realTime']/60 %> minutes
+        <%= @weather['current_observation']['weather'] %>, <%= @weather['current_observation']['temperature_string'] %>, <em>feels like <%= @weather['current_observation']['feelslike_string'] %></em><br>
+        <a href="<%= @weather['current_observation']['forecast_url'] %>" target="_blank">Full Forecast</a>
       </p>
-    <% end %>
 
-    <p><a href="<%= @response['url'] %>" target="_blank"><img src="<%= @response['rating_img_url'] %>"></a> 
-    <%= @response['review_count'] %> Yelp reviews</p>
+      <p>
+        <strong>Relative Humidity:</strong> <%= @weather['current_observation']['relative_humidity'] %><br>
+        <strong>Wind:</strong> <%= @weather['current_observation']['wind_string'] %><br>
+        <strong>UV Index:</strong> <%= @weather['current_observation']['UV'] %> out of 16<br>
+        <strong>Sunset:</strong> <%= @weather['sun_phase']['sunset']['hour'] %>:<%= @weather['sun_phase']['sunset']['minute'] %><br>
+
+      </p>
+    </div>
+    
+    <div class="col-md-6 pull-right">
+      <p>
+        <strong>Observed location:</strong> <%= @weather['current_observation']['observation_location']['city'] %><br>
+        <em><%= @weather['current_observation']['observation_time'] %></em>
+      </p>
+      <p>Weather brought to you by:<br>
+        <a href="<%= @weather['current_observation']['image']['link'] %>" target="_blank"><img src="<%= @weather['current_observation']['image']['url'] %>"></a>
+      </p>
+    </div>
+
   </div>
-
-  <div class="col-sm-8 col-md-7 pull-left">
-    <p><a href="<%= photos_link(@response['id']) %>">See photos on Flickr</a></p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </div>
-</div
-
-<div class="row">
-  <h2>Weather Information</h2>
-
-  <div class="col-md-6 pull-left">
-    <img src="<%= @weather['current_observation']['icon_url'] %>">
-    <p>
-      <%= @weather['current_observation']['weather'] %>, <%= @weather['current_observation']['temperature_string'] %>, <em>feels like <%= @weather['current_observation']['feelslike_string'] %></em><br>
-      <a href="<%= @weather['current_observation']['forecast_url'] %>" target="_blank">Full Forecast</a>
-    </p>
-
-    <p>
-      <strong>Relative Humidity:</strong> <%= @weather['current_observation']['relative_humidity'] %><br>
-      <strong>Wind:</strong> <%= @weather['current_observation']['wind_string'] %><br>
-      <strong>UV Index:</strong> <%= @weather['current_observation']['UV'] %> out of 16<br>
-      <strong>Sunset:</strong> <%= @weather['sun_phase']['sunset']['hour'] %>:<%= @weather['sun_phase']['sunset']['minute'] %><br>
-
-    </p>
-  </div>
-  
-  <div class="col-md-6 pull-right">
-    <p>
-      <strong>Observed location:</strong> <%= @weather['current_observation']['observation_location']['city'] %><br>
-      <em><%= @weather['current_observation']['observation_time'] %></em>
-    </p>
-    <p>Weather brought to you by:<br>
-      <a href="<%= @weather['current_observation']['image']['link'] %>" target="_blank"><img src="<%= @weather['current_observation']['image']['url'] %>"></a>
-    </p>
-  </div>
-
 </div>
