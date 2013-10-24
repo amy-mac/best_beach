@@ -1,11 +1,10 @@
 <div class="container">
-  <div class="row">
-    <h1><%= @beach.name %></h1>
-    <img src="<%= @beach.main_image %>">
+  <div class="row page-header">
+    <h1><%= @beach.name %> <small><a href="<%= photos_link(@response['id']) %>">See photos on Flickr</a></small></h1>
   </div>
 
   <div class="row">
-
+    <img src="<%= @beach.main_image %>">
     <div class="col-sm-4 col-md-4 pull-right well">
       <address>
         <%= @response['location']['address'][0] %><br>
@@ -31,10 +30,12 @@
     </div>
 
     <div class="col-md-8 pull-left">
-      <p><a href="<%= photos_link(@response['id']) %>">See photos on Flickr</a></p>
+      
+      <p><strong>Some reviews from Yelp</strong></p>
       <% @response['reviews'].each do |review| %>
-
-
+        <p><img src="<%= review['rating_image_small_url']%>"><br>
+          <%= review['excerpt'] %> <a href="<%= @response['url'] %>#hrid:<%= review['id']%>" target="_blank">Read more</a><br>
+        </p>
       <% end %>
     </div>
   </div
@@ -46,12 +47,14 @@
 
       <div class="row">
         <div class="col-md-4 pull-left">
-          <p class="current_temp"><img src="<%= @weather['current_observation']['icon_url'] %>"><%= @weather['current_observation']['weather'] %></p>
+          <p class="current_temp"><img src="<%= @weather['current_observation']['icon_url'] %>"><br>
+            <%= @weather['current_observation']['weather'] %></p>
         </div>
         <div class="col-md-8 pull-right current_temp">
           <p class="current_temp"><%= @weather['current_observation']['temperature_string'] %></p>
         </div>
       </div>
+
 
       <p>
         <a href="<%= @weather['current_observation']['forecast_url'] %>" target="_blank">Full Forecast</a>
