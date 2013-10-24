@@ -8,6 +8,14 @@ body {
   
 }
 
+#wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  // margin: 0 auto -60px;
+  padding: 0 0 30px;
+}
+
 .navbar {
   background-color: #00CC99;
   border-top: none;
@@ -21,33 +29,27 @@ body {
 .navbar-brand {
   font-family: 'Lobster', cursive;
   color: #fff;
-  font-size: 3em;
-  line-height: 1.1em;
+  font-size: 2.8em;
+  line-height: 1em;
 }
 
-.well {
-  max-height: 26em;
+.navbar-brand:hover {
+  color: #FFF;
 }
 
-.logo {
-  max-width: 100%;
+footer {
+  height: 60px;
+  background-color: #007BA7;
+  padding-top: 15px;
+  color: #FFF;
 }
 
-.form-control {
-  width: 14em;
+footer img {
+  width: 200px;
 }
 
-.sidebar {
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-
-#wrapper {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto -60px;
-  padding: 0 0 60px;
+footer a {
+  color: #062A78;
 }
 
 #hero {
@@ -67,7 +69,28 @@ body {
   font-size: 1.8em;
 }
 
-footer {
-  height: 60px;
-  background-color: #007BA7;
+.beach {
+  height: 26em;
+}
+
+.logo {
+  max-width: 100%;
+}
+
+.form-control {
+  width: 14em;
+}
+
+.sidebar {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.drive_time {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.current_temp {
+  font-size: 1.6em;
 }

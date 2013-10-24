@@ -1,3 +1,9 @@
 == BestBeachToday
 
 First project for WDI
+
+Makes use of these API's:
+
+Yelp
+Weather Underground
+Mapquest

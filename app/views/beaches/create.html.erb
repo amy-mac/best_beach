@@ -2,14 +2,14 @@
   <div class="row">
     <% @response.each do |x| %>
     
-      <div class="col-xs-12 col-sm-6 col-md-4 text-center well">
+      <div class="col-xs-12 col-sm-6 col-md-4 text-center well beach">
         <img src="<%= x['image_url'] %>" class="img-circle">
       
         <h2><%= link_to x['name'], beach_path(x['id']) %></h2>
       
         <img src="<%= x['rating_img_url'] %>">
       
-        <p><%= x['review_count']%> Yelp ratings</p>
+        <p><%= x['review_count']%> ratings from <a href="http://www.yelp.com"><img src="/assets/yelp_logo_50x25.png"></a></p>
         
         <% if x['location']['postal_code'] %>
           <% @weather = weather(x['location']['postal_code']) %>
@@ -24,7 +24,7 @@
         <% unless @destination.empty? %>
           <% @results = mapquest_api(@origin, @destination) %>
           <% unless @results['route'].empty? %>
-            <p><%= @results['route']['realTime']/60 %> minutes away</p>
+            <p class="drive_time"><%= @results['route']['realTime']/60 %> minutes away</p>
           <% end %>
         <% end %>
 
