@@ -12,7 +12,7 @@ module BeachesHelper
 
   def weather(postal_code)
     w = Wunderground.new('5d5c82de5f22fc4e')
-    @weather = w.conditions_for(postal_code)
+    @weather = w.forecast_and_conditions_and_astronomy_for(postal_code)
     return @weather
   end
   

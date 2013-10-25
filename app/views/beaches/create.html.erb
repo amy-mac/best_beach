@@ -1,6 +1,6 @@
 <div class="page-header">
   <div class="container">
-    <h1>Top Beaches <small><%= @latitude %>, <%= @longitude %></small></h1>
+    <h1>Top Beaches</h1>
   </div>
 </div>
 
@@ -8,25 +8,17 @@
   <div class="row">
     <% @response.each do |x| %>
 
-      <% cache(x['name'], :expires_in => 5.minutes) do %>
+      <% cache(x['name'], :expires_in => 15.minutes) do %>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center well beach">
           <img src="<%= x['image_url'] %>" class="img-circle">
         
           <h2><%= link_to x['name'], beach_path(x['id']) %></h2>
         
-          <img src="<%= x['rating_img_url'] %>">
-        
-          <p><%= x['review_count']%> reviews from <a href="http://www.yelp.com"><img src="/assets/yelp_logo_50x25.png"></a></p>
-          
-          <% if x['location']['postal_code'] %>
-            <% @weather = weather(x['location']['postal_code']) %>
-            <p>
-              <img src="<%= @weather['current_observation']['icon_url'] %>">
-              <%= @weather['current_observation']['weather'] %>, <%= @weather['current_observation']['temperature_string'] %>
-            </p>
-          <% end %>
-            
+          <p><img src="<%= x['rating_img_url'] %>"> <%= x['review_count']%> reviews<br>
+            <a href="http://www.yelp.com"><img src="/assets/Powered_By_Yelp_White.png"></a>
+          </p>
+
           <% @destination = get_destination(x['location']['address'][0], x['location']['postal_code']) %>
             
           <% unless @destination.empty? %>
@@ -34,6 +26,14 @@
             <% unless @results['route'].empty? %>
               <p class="drive_time"><%= @results['route']['realTime']/60 %> minutes away</p>
             <% end %>
+          <% end %>
+          
+          <% if x['location']['postal_code'] %>
+            <% @weather = weather(x['location']['postal_code']) %>
+            <p>
+              <img src="<%= @weather['current_observation']['icon_url'] %>">
+              <%= @weather['current_observation']['weather'] %>, <%= @weather['current_observation']['temperature_string'] %>
+            </p>
           <% end %>
 
         </div>

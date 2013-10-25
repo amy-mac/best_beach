@@ -39,11 +39,12 @@
       <p class="pull-right"><a href="http://www.yelp.com"><img src="/assets/reviewsFromYelpWHT.gif"></a></p>
     
     </div>
-  </div
+  </div>
 
+<% cache(@response['id'], :expires_in => 5.minutes) do %>
+  <% @weather = weather(@response['location']['postal_code']) %>
   <div class="row">
     <h2>Weather Information</h2>
-
     <div class="col-md-6">
 
       <div class="row">
@@ -101,4 +102,5 @@
     </div>
 
   </div>
+  <% end %>
 </div>
