@@ -38,8 +38,6 @@ class BeachesController < ApplicationController
       @destination = @destination.flatten.join
     end
 
-
-
     @drive_time = Typhoeus.get(
       "http://www.mapquestapi.com/directions/v2/route?key=Fmjtd%7Cluubnu0all%2C7n%3Do5-9u1s0z&from=#{@origin}&to=#{@destination}"
       )
