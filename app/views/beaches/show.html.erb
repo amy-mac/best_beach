@@ -27,7 +27,7 @@
           <%= @results['route']['realTime']/60 %> minutes
         </p>
       <% end %>
-      <p><a href="<%= photos_link(@beach.name) %>">See photos on Flickr</a></p>
+      <p><a href="<%= photos_link(@beach.name, @response['location']['city']) %>">See photos on Flickr</a></p>
     </div>
 
     <div class="col-md-7 pull-left">
