@@ -7,8 +7,6 @@ gem 'yelpster'
 gem 'json'
 gem 'typhoeus'
 gem 'wunderground'
-gem 'memcachier'
-gem 'dalli'
 
 # Gems used only for assets and not required
 # in production environments by default.

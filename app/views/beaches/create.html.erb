@@ -8,7 +8,7 @@
   <div class="row">
     <% @response.each do |x| %>
 
-      <% Rails.cache.fetch(x['name'], :expires_in => 5.minutes) do %>
+      <% cache(x['name'], :expires_in => 5.minutes) do %>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center well beach">
           <img src="<%= x['image_url'] %>" class="img-circle">
