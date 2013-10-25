@@ -1,11 +1,14 @@
-  <div class="page-header">
-    <h1><%= @beach.name %> <small><a href="<%= photos_link(@response['id']) %>">See photos on Flickr</a></small></h1>
+<div class="page-header">
+  <div class="container">
+      <h1><%= @beach.name %> <small><a href="<%= @response['url'] %>" target="_blank"><img src="<%= @response['rating_img_url'] %>"></a> <%= @response['review_count'] %> reviews</small></h1>
   </div>
+</div>
+
 <div class="container">
 
   <div class="row">
     <img src="<%= @beach.main_image %>">
-    <div class="col-sm-4 col-md-4 pull-right well">
+    <div class="col-sm-4 col-md-4 col-md-offset-1 well pull-right">
       <address>
         <%= @response['location']['address'][0] %><br>
           <% if @response['location']['cross_streets'] %>
@@ -24,46 +27,45 @@
           <%= @results['route']['realTime']/60 %> minutes
         </p>
       <% end %>
-
-      <p><a href="<%= @response['url'] %>" target="_blank"><img src="<%= @response['rating_img_url'] %>"></a> 
-      <%= @response['review_count'] %> reviews from <a href="http://www.yelp.com"><img src="/assets/yelp_logo_50x25.png"></a></p>
+      <p><a href="<%= photos_link(@beach.name) %>">See photos on Flickr</a></p>
     </div>
 
-    <div class="col-md-8 pull-left">
-      
-      <p><strong>Some reviews from Yelp</strong></p>
+    <div class="col-md-7 pull-left">
       <% @response['reviews'].each do |review| %>
-        <p><img src="<%= review['rating_image_small_url']%>"><br>
+        <p><img src="<%= review['rating_image_url']%>"> <%= Time.at(review['time_created']).to_date %><br>
           <%= review['excerpt'] %> <a href="<%= @response['url'] %>#hrid:<%= review['id']%>" target="_blank">Read more</a><br>
         </p>
       <% end %>
+      <p class="pull-right"><a href="http://www.yelp.com"><img src="/assets/reviewsFromYelpWHT.gif"></a></p>
+    
     </div>
   </div
 
   <div class="row">
     <h2>Weather Information</h2>
 
-    <div class="col-md-6 pull-left">
+    <div class="col-md-6">
 
       <div class="row">
-        <div class="col-md-4 pull-left">
-          <p class="current_temp"><img src="<%= @weather['current_observation']['icon_url'] %>"><br>
-            <%= @weather['current_observation']['weather'] %></p>
+        <div class="col-md-2 pull-left">
+          <p class="current_temp"><img src="<%= @weather['current_observation']['icon_url'] %>">
+          </p>
         </div>
-        <div class="col-md-8 pull-right current_temp">
-          <p class="current_temp"><%= @weather['current_observation']['temperature_string'] %></p>
+        <div class="col-md-10 pull-right">
+          <p><span class="current_temp"><%= @weather['current_observation']['temperature_string'] %></span><br>
+            <%= @weather['current_observation']['weather'] %>
+          </p>
         </div>
       </div>
-
+      <p><strong><%= @weather['forecast']['txt_forecast']['forecastday'][0]['title'] %>:</strong> <%= @weather['forecast']['txt_forecast']['forecastday'][0]['fcttext'] %></p>
+      <p><strong><%= @weather['forecast']['txt_forecast']['forecastday'][1]['title'] %>:</strong> <%= @weather['forecast']['txt_forecast']['forecastday'][1]['fcttext'] %></p>
 
       <p>
         <a href="<%= @weather['current_observation']['forecast_url'] %>" target="_blank">Full Forecast</a>
-        <strong>Sunset:</strong> <%= @weather['sun_phase']['sunset']['hour'] %>:<%= @weather['sun_phase']['sunset']['minute'] %><br>
-
       </p>
     </div>
     
-    <div class="col-md-6 pull-right table-responsive">
+    <div class="col-md-6 table-responsive">
       <table class="table table-condensed">
         <thead>
           <tr>
@@ -85,6 +87,10 @@
           <tr>
             <td>UV Index:</td>
             <td><%= @weather['current_observation']['UV'] %> out of 16</td>
+          </tr>
+          <tr>
+            <td>Sunset:</td>
+            <td><%= @weather['sun_phase']['sunset']['hour'] %>:<%= @weather['sun_phase']['sunset']['minute'] %></td>
           </tr>
         </tbody>
       </table>

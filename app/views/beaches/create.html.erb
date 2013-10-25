@@ -1,3 +1,9 @@
+<div class="page-header">
+  <div class="container">
+    <h1>Top Beaches <small><%= @latitude %>, <%= @longitude %></small></h1>
+  </div>
+</div>
+
 <div class="container">
   <div class="row">
     <% @response.each do |x| %>
@@ -9,7 +15,7 @@
       
         <img src="<%= x['rating_img_url'] %>">
       
-        <p><%= x['review_count']%> ratings from <a href="http://www.yelp.com"><img src="/assets/yelp_logo_50x25.png"></a></p>
+        <p><%= x['review_count']%> reviews from <a href="http://www.yelp.com"><img src="/assets/yelp_logo_50x25.png"></a></p>
         
         <% if x['location']['postal_code'] %>
           <% @weather = weather(x['location']['postal_code']) %>
