@@ -15,15 +15,14 @@
         
           <h2><%= link_to x['name'], beach_path(x['id']) %></h2>
         
-          <p><img src="<%= x['rating_img_url'] %>"> <%= x['review_count']%> reviews<br>
-            <a href="http://www.yelp.com"><img src="/assets/Powered_By_Yelp_White.png"></a>
+          <p><img src="<%= x['rating_img_url'] %>"> <%= x['review_count']%> <a href="http://www.yelp.com"><img src="/assets/miniMapLogo.png"></a> reviews
           </p>
 
           <% @destination = get_destination(x['location']['address'][0], x['location']['postal_code']) %>
             
           <% unless @destination.empty? %>
             <% @results = mapquest_api(@origin, @destination) %>
-            <% unless @results['route'].empty? %>
+            <% unless @results.nil? || @results['route'].empty? %>
               <p class="drive_time"><%= @results['route']['realTime']/60 %> minutes away</p>
             <% end %>
           <% end %>

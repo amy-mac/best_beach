@@ -25,9 +25,20 @@ class BeachesController < ApplicationController
     
     @origin = origin_set
     @destination = []
-    @destination << @response['location']['address'][0].split(" ")
-    @destination << @response['location']['postal_code']
-    @destination = @destination.flatten.join(",")
+
+    
+    if @response['location']['address'] && @response['location']['postal_code']
+      unless @response['location']['address'].empty?
+        @destination << @response['location']['address'][0].split(" ")
+        @destination << @response['location']['postal_code']
+        @destination = @destination.flatten.join(",")
+      end
+    elsif @response['location']['postal_code']
+      @destination << @response['location']['postal_code']
+      @destination = @destination.flatten.join
+    end
+
+
 
     @drive_time = Typhoeus.get(
       "http://www.mapquestapi.com/directions/v2/route?key=Fmjtd%7Cluubnu0all%2C7n%3Do5-9u1s0z&from=#{@origin}&to=#{@destination}"
