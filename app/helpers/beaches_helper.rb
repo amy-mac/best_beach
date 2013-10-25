@@ -38,7 +38,7 @@ module BeachesHelper
   end
 
   def photos_link(location, city)
-    link = "http://www.flickr.com/search/?q=#{location + city}&ss=1&ct=0&mt=all&w=all&adv=1"
+    link = "http://www.flickr.com/search/?q=#{location + " " + city}&ss=1&ct=0&mt=all&w=all&adv=1"
     return link
   end
 end
