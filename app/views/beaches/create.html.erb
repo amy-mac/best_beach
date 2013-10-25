@@ -7,34 +7,37 @@
 <div class="container">
   <div class="row">
     <% @response.each do |x| %>
-    
-      <div class="col-xs-12 col-sm-6 col-md-4 text-center well beach">
-        <img src="<%= x['image_url'] %>" class="img-circle">
-      
-        <h2><%= link_to x['name'], beach_path(x['id']) %></h2>
-      
-        <img src="<%= x['rating_img_url'] %>">
-      
-        <p><%= x['review_count']%> reviews from <a href="http://www.yelp.com"><img src="/assets/yelp_logo_50x25.png"></a></p>
-        
-        <% if x['location']['postal_code'] %>
-          <% @weather = weather(x['location']['postal_code']) %>
-          <p>
-            <img src="<%= @weather['current_observation']['icon_url'] %>">
-            <%= @weather['current_observation']['weather'] %>, <%= @weather['current_observation']['temperature_string'] %>
-          </p>
-        <% end %>
-          
-        <% @destination = get_destination(x['location']['address'][0], x['location']['postal_code']) %>
-          
-        <% unless @destination.empty? %>
-          <% @results = mapquest_api(@origin, @destination) %>
-          <% unless @results['route'].empty? %>
-            <p class="drive_time"><%= @results['route']['realTime']/60 %> minutes away</p>
-          <% end %>
-        <% end %>
 
-      </div>
+      <% cache(:action => 'create', :action_suffix => x['name'], :expires_in => 5.minutes) do %>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center well beach">
+          <img src="<%= x['image_url'] %>" class="img-circle">
+        
+          <h2><%= link_to x['name'], beach_path(x['id']) %></h2>
+        
+          <img src="<%= x['rating_img_url'] %>">
+        
+          <p><%= x['review_count']%> reviews from <a href="http://www.yelp.com"><img src="/assets/yelp_logo_50x25.png"></a></p>
+          
+          <% if x['location']['postal_code'] %>
+            <% @weather = weather(x['location']['postal_code']) %>
+            <p>
+              <img src="<%= @weather['current_observation']['icon_url'] %>">
+              <%= @weather['current_observation']['weather'] %>, <%= @weather['current_observation']['temperature_string'] %>
+            </p>
+          <% end %>
+            
+          <% @destination = get_destination(x['location']['address'][0], x['location']['postal_code']) %>
+            
+          <% unless @destination.empty? %>
+            <% @results = mapquest_api(@origin, @destination) %>
+            <% unless @results['route'].empty? %>
+              <p class="drive_time"><%= @results['route']['realTime']/60 %> minutes away</p>
+            <% end %>
+          <% end %>
+
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
