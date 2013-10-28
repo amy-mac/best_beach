@@ -17,14 +17,16 @@ module BeachesHelper
   end
   
   def get_destination(address, zip)
-    @destination = []
+    destination = []
     if address && zip
-      @destination << address.split(" ")
-      @destination << zip
-      return @destination.flatten.join(",")
+      unless address.empty?
+        destination << address.split(" ")
+        destination << zip
+        return destination.flatten.join(",")
+      end
     elsif zip
-      @destination << zip
-      return @destination.flatten.join
+      destination << zip
+      return destination.flatten.join
     end
   end
 

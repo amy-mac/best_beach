@@ -24,13 +24,13 @@
         <a href="<%= @directions %>">Directions</a>
       </address>
 
-      <% unless @results['route'].empty? %>
+      <% unless @drive_time['route'].empty? || @drive_time.nil? %>
         <p>
-          <strong>Distance:</strong> <%= @results['route']['distance'] %> miles<br>
+          <strong>Distance:</strong> <%= @drive_time['route']['distance'] %> miles<br>
           <strong>Regular Travel Time:</strong> 
-          <%= @results['route']['time']/60 %> minutes<br>
+          <%= @drive_time['route']['time']/60 %> minutes<br>
           <strong>Current Travel time:</strong> 
-          <%= @results['route']['realTime']/60 %> minutes
+          <%= @drive_time['route']['realTime']/60 %> minutes
         </p>
       <% end %>
       <p><a href="<%= photos_link(@beach.name, @response['location']['city']) %>">See photos on Flickr</a></p>
