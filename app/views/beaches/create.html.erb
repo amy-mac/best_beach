@@ -1,9 +1,3 @@
-<% unless @latitude %>
-  <script>
-    getGeoLocation();
-  </script>
-<% end %>
-
 <div class="page-header">
   <div class="container">
     <h1>Top Beaches</h1>
@@ -28,7 +22,7 @@
             
           <% unless @destination.empty? || @destination.nil? %>
             <% @results = mapquest_api(@origin, @destination) %>
-            <% unless @results.nil? || @results['route'].empty? %>
+            <% unless @results['route'].nil? %>
               <p class="drive_time"><%= @results['route']['realTime']/60 %> minutes away</p>
             <% end %>
           <% end %>
