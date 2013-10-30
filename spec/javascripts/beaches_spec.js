@@ -8,8 +8,8 @@ describe('true', function() {
 });
 
 describe('getGeoLocation', function() {
-  it('obtains the user geolocation', function() {
-    test = getGeoLocation();
-    expect(test).to.not.be.a('null');
+  it('pops up user geolocation request', function() {
+    
+    
   });
 });

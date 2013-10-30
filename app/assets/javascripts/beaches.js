@@ -2,12 +2,10 @@ if (!navigator.geolocation){
   output.innerHTML = "<p>Geolocation is not supported by your browser. Please find your coordinates online and enter them.</p>";
 }
 
-$(document).ready(function() {
-  var getGeoLocation = function() {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      $("#lat").val(position.coords.latitude);
-      $("#long").val(position.coords.longitude);
+var getGeoLocation = function() {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    $("#lat").val(position.coords.latitude);
+    $("#long").val(position.coords.longitude);
 
-    });
-  };
-});
+  });
+};
