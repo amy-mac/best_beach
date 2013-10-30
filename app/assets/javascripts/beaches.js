@@ -3,11 +3,11 @@ if (!navigator.geolocation){
 }
 
 $(document).ready(function() {
-  function getGeoLocation() {
+  var getGeoLocation = function() {
     navigator.geolocation.getCurrentPosition(function(position) {
       $("#lat").val(position.coords.latitude);
       $("#long").val(position.coords.longitude);
 
-  });
-  }
+    });
+  };
 });
