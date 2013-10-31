@@ -1,0 +1,28 @@
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center well beach">
+          <img src="<%= x['image_url'] %>" class="img-circle">
+        
+          <h2><%= link_to x['name'], beach_path(x['id']) %></h2>
+        
+          <p><img src="<%= x['rating_img_url'] %>"> <%= x['review_count']%> <a href="http://www.yelp.com"><img src="/assets/miniMapLogo.png"></a> reviews
+          </p>
+
+          <% @destination = get_destination(x['location']['address'][0], x['location']['postal_code']) %>
+            
+          <% unless @destination.empty? || @destination.nil? %>
+            <% @results = mapquest_api(@origin, @destination) %>
+            
+            <% unless @results['route'].nil? %>
+              <p class="drive_time"><%= @results['route']['realTime']/60 %> minutes away</p>
+            <% end %>
+          
+          <% end %>
+          
+          <% if x['location']['postal_code'] %>
+            <% @weather = weather(x['location']['postal_code']) %>
+            <p>
+              <img src="<%= @weather['current_observation']['icon_url'] %>">
+              <%= @weather['current_observation']['weather'] %>, <%= @weather['current_observation']['temperature_string'] %>
+            </p>
+          <% end %>
+
+        </div>

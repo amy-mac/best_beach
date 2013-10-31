@@ -1,0 +1,9 @@
+<div class="col-md-7 pull-left">
+  <% @yelp_response['reviews'].each do |review| %>
+    <p><img src="<%= review['rating_image_url']%>"> <%= Time.at(review['time_created']).to_date %><br>
+      <%= review['excerpt'] %> <a href="<%= @yelp_response['url'] %>#hrid:<%= review['id']%>" target="_blank">Read more</a><br>
+    </p>
+  <% end %>
+  <p class="pull-right"><a href="http://www.yelp.com"><img src="/assets/reviewsFromYelpWHT.gif"></a></p>
+
+</div>

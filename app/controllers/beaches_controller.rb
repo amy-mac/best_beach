@@ -22,11 +22,12 @@ class BeachesController < ApplicationController
     @beach = Beach.find_by_yelp_id(params[:id])
     
     yelp_call = Information.new
-    @response = yelp_call.get_beach(@beach.yelp_id)
+    @yelp_response = yelp_call.get_beach(@beach.yelp_id)
+    @zip = @yelp_response['location']['postal_code']
     
     origin = origin_set
 
-    destination = get_destination(@response['location']['address'][0], @response['location']['postal_code'])
+    destination = get_destination(@yelp_response['location']['address'][0], @zip)
 
     @drive_time = mapquest_api(origin, destination)
 

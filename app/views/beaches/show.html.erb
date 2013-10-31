@@ -1,6 +1,6 @@
 <div class="page-header">
   <div class="container">
-      <h1><%= @beach.name %> <small><a href="<%= @response['url'] %>" target="_blank"><img src="<%= @response['rating_img_url'] %>"></a> <%= @response['review_count'] %> reviews</small></h1>
+      <h1><%= @beach.name %> <small><a href="<%= @yelp_response['url'] %>" target="_blank"><img src="<%= @yelp_response['rating_img_url'] %>"></a> <%= @yelp_response['review_count'] %> reviews</small></h1>
   </div>
 </div>
 
@@ -10,11 +10,11 @@
     <img src="<%= @beach.main_image %>">
     <div class="col-sm-4 col-md-4 col-md-offset-1 well pull-right">
       <address>
-        <%= @response['location']['address'][0] %><br>
-          <% if @response['location']['cross_streets'] %>
-            Cross streets: <%= @response['location']['cross_streets'] %><br>
+        <%= @yelp_response['location']['address'][0] %><br>
+          <% if @yelp_response['location']['cross_streets'] %>
+            Cross streets: <%= @yelp_response['location']['cross_streets'] %><br>
           <% end %>
-        <%= @response['location']['city'] %>, <%= @response['location']['state_code'] %> <%= @response['location']['postal_code'] %><br>
+        <%= @yelp_response['location']['city'] %>, <%= @yelp_response['location']['state_code'] %> <%= @zip %><br>
         <a href="<%= @directions %>">Directions</a>
       </address>
 
@@ -27,22 +27,15 @@
           <%= @drive_time['route']['realTime']/60 %> minutes
         </p>
       <% end %>
-      <p><a href="<%= photos_link(@beach.name, @response['location']['city']) %>">See photos on Flickr</a></p>
+      <p><a href="<%= photos_link(@beach.name, @yelp_response['location']['city']) %>">See photos on Flickr</a></p>
     </div>
 
-    <div class="col-md-7 pull-left">
-      <% @response['reviews'].each do |review| %>
-        <p><img src="<%= review['rating_image_url']%>"> <%= Time.at(review['time_created']).to_date %><br>
-          <%= review['excerpt'] %> <a href="<%= @response['url'] %>#hrid:<%= review['id']%>" target="_blank">Read more</a><br>
-        </p>
-      <% end %>
-      <p class="pull-right"><a href="http://www.yelp.com"><img src="/assets/reviewsFromYelpWHT.gif"></a></p>
-    
-    </div>
+    <%= render "yelp_reviews" %>
+
   </div>
 
-<% cache(@response['id'], :expires_in => 5.minutes) do %>
-  <% @weather = weather(@response['location']['postal_code']) %>
+<% cache(@yelp_response['id'], :expires_in => 5.minutes) do %>
+  <% @weather = weather(@zip) %>
   <div class="row">
     <h2>Weather Information</h2>
     <div class="col-md-6">
