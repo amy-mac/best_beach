@@ -8,11 +8,8 @@
   <div class="row">
     <% @response.each do |x| %>
 
-      <% cache(x['name'], :expires_in => 15.minutes) do %>
-
       <%= render "beach_summary", :x => x %>
       
-      <% end %>
     <% end %>
   </div>
 </div>
