@@ -28,7 +28,7 @@ class BeachesController < ApplicationController
     origin = origin_set
 
     destination = get_destination(@yelp_response['location']['address'][0], @zip)
-
+    
     @drive_time = mapquest_api(origin, destination)
 
     @directions = "https://maps.google.com/maps?saddr=#{origin}&daddr=#{destination}"

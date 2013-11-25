@@ -17,17 +17,28 @@ module BeachesHelper
     return @weather
   end
   
+  # Need to refactor this
   def get_destination(address, zip)
     destination = []
     if address && zip
       unless address.empty?
         destination << address.split(" ")
         destination << zip
-        return destination.flatten.join(",")
+        destination = destination.flatten.join(",")
+        if destination.include? "&"
+          return destination.gsub!("&", "and")
+        else
+          return destination
+        end
       end
     elsif zip
       destination << zip
-      return destination.flatten.join
+      destination = destination.flatten.join
+      if destination.include? "&"
+        return destination.gsub!("&", "and")
+      else
+        return destination
+      end
     end
   end
 
