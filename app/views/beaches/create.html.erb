@@ -1,3 +1,9 @@
+<% unless cookies[:coordinates] %>
+  <script>
+    getGeoLocation();
+  </script>
+<% end %>
+
 <div class="page-header">
   <div class="container">
     <h1>Top Beaches</h1>

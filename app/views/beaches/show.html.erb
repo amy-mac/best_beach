@@ -1,3 +1,9 @@
+<% unless cookies[:coordinates] %>
+  <script>
+    getGeoLocation();
+  </script>
+<% end %>
+
 <div class="page-header">
   <div class="container">
       <h1><%= @beach.name %> <small><a href="<%= @yelp_response['url'] %>" target="_blank"><img src="<%= @yelp_response['rating_img_url'] %>"></a> <%= @yelp_response['review_count'] %> reviews</small></h1>
@@ -38,6 +44,7 @@
   <% @weather = weather(@zip) %>
   <div class="row">
     <h2>Weather Information</h2>
+    <% if @weather['current_observation'] %>
     <div class="col-md-6">
 
       <div class="row">
@@ -93,7 +100,9 @@
         <em><%= @weather['current_observation']['observation_time'] %></em>
       </p>
     </div>
-
+    <% else %>
+      <p>Sorry there is no weather information for this location currently available.</p>
+    <% end %>
   </div>
   <% end %>
 </div>
