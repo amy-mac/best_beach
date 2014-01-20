@@ -1,4 +1,4 @@
-== BestBeachToday
+== BestBeachNow
 
 First project for WDI
 
