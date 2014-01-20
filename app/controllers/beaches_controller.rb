@@ -9,7 +9,6 @@ class BeachesController < ApplicationController
     @longitude = params[:longitude]
 
     cookies[:coordinates] = [@latitude, @longitude]
-    # binding.pry
     
     yelp_call = Information.new
     @response = yelp_call.get_beach_list(@latitude, @longitude)

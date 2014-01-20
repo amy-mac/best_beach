@@ -12,10 +12,16 @@
 
 <div class="container">
   <div class="row">
-    <% @response.each do |x| %>
+    <% if !@response.empty? %>
+      <% @response.each do |x| %>
 
-      <%= render "beach_summary", :x => x %>
+        <%= render "beach_summary", :x => x %>
       
+      <% end %>
+    <% else %>
+      <div class="col-xs-12">
+        <p>Sorry, but there are no beaches near your location.</p>
+      </div>
     <% end %>
   </div>
 </div>
