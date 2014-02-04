@@ -9,3 +9,7 @@ var getGeoLocation = function() {
 
   });
 };
+
+$(document).ready(function() {
+  
+});
