@@ -6,17 +6,19 @@
   <p><img src="<%= x['rating_img_url'] %>"> <%= x['review_count']%> <a href="http://www.yelp.com"><img src="/assets/miniMapLogo.png"></a> reviews
   </p>
 
-  <% @destination = get_destination(x['location']['address'][0], x['location']['postal_code']) %>
-    
-  <% if !@destination.nil? && !@destination.empty? %>
-    <% @results = mapquest_api(@origin, @destination) %>
-    
-    <% unless @results['route'].nil? %>
-      <p class="drive_time"><%= @results['route']['realTime']/60 %> minutes away</p>
-    <% end %>
-  
-  <% end %>
-  
+  <!--
+  <%# @destination = get_destination(x['location']['address'][0], x['location']['postal_code']) %>
+
+  <%# if !@destination.nil? && !@destination.empty? %>
+    <%# @results = mapquest_api(@origin, @destination) %>
+
+    <%# unless @results['route'].nil? %>
+      <p class="drive_time"><%#= @results['route']['realTime']/60 %> minutes away</p>
+    <%# end %>
+
+  <%# end %>
+  -->
+
   <% if x['location']['postal_code'] %>
     <% cache(x['location']['postal_code'], :expires_in => 15.minutes) do %>
       <% @weather = weather(x['location']['postal_code']) %>

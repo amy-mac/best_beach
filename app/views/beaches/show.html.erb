@@ -24,7 +24,7 @@
         <a href="<%= @directions %>">Directions</a>
       </address>
 
-      <% if !@drive_time['route'].empty? || !@drive_time.nil? %>
+      <% if @drive_time && @drive_time['route'].present? %>
         <p>
           <strong>Distance:</strong> <%= @drive_time['route']['distance'] %> miles<br>
           <strong>Regular Travel Time:</strong> 
