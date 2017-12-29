@@ -15,8 +15,6 @@
 /tmp
 
 .DS_Store
-.swp
+*.swp
 
-/config/initializers/secret_token.rb
-/config/initializers/yelp_auth.rb
-/config/local.rb
+.env
