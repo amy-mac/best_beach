@@ -30,6 +30,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'sqlite3'
   gem 'konacha'
+  gem 'dotenv-rails'
 end
 
 group :production do
