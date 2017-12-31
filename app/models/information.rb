@@ -8,6 +8,8 @@ class Information
   end
   
   def get_beach_list(lat, long)
+    return unless lat.presence && long.presence
+
     request = Yelp::V2::Search::Request::GeoPoint.new(
               :latitude => lat,
               :longitude => long,

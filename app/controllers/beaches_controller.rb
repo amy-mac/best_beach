@@ -12,7 +12,7 @@ class BeachesController < ApplicationController
     
     yelp_call = Information.new
     @response = yelp_call.get_beach_list(@latitude, @longitude)
-    
+
     @origin = origin_set
 
   end

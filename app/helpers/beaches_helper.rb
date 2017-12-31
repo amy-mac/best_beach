@@ -7,7 +7,6 @@ module BeachesHelper
       origin = cookies[:coordinates].split("&")
       origin = origin[0] + "," + origin[1]
     end
-    return origin
   end
 
   def weather(postal_code)
