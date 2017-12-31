@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.17'
-ruby '2.2.1'
+ruby '2.1.2'
 
 gem 'yelpster'
 gem 'json'
@@ -25,7 +25,8 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'quiet_assets'
-  gem 'rspec-rails'
+  gem 'rspec-rails', "~> 3.7"
+  gem 'shoulda-matchers', '~> 2.8.0'
   gem 'pry'
   gem 'pry-rails'
   gem 'sqlite3'
