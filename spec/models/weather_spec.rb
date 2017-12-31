@@ -1,5 +1,7 @@
 require 'spec_helper'
 
-describe Weather do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Weather, type: :model do
+  it "initializes a new Wunderground object" do
+    expect(Weather.new.client).to be_an_instance_of(Wunderground)
+  end
 end
