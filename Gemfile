@@ -1,41 +1,31 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.17'
+gem 'rails', '4.0'
 ruby '2.1.2'
 
-gem 'yelpster'
-gem 'json'
-gem 'typhoeus'
-gem 'wunderground'
+gem 'yelpster', "1.3.0"
+gem 'json', "1.8.3"
+gem 'typhoeus', "1.0.2"
+gem 'wunderground', "1.2.0"
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'bootstrap-sass', '~> 3.0.0.0.rc'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
-end
-
+gem 'bootstrap-sass', '~> 3.0.0.0.rc'
+gem 'uglifier', '>= 1.0.3'
 gem 'jquery-rails'
 
 group :development, :test do
+  gem 'sass-rails',   '>= 4.0'
   gem 'quiet_assets'
   gem 'rspec-rails', "~> 3.7"
   gem 'shoulda-matchers', '~> 2.8.0'
   gem 'pry'
   gem 'pry-rails'
   gem 'sqlite3'
-  gem 'konacha'
-  gem 'dotenv-rails'
+  gem 'konacha', "3.7.0"
+  gem 'dotenv-rails', "2.2.1"
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', "0.18.4"
 end
 
 # To use ActiveModel has_secure_password
