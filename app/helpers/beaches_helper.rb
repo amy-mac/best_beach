@@ -1,12 +1,7 @@
 module BeachesHelper
 
   def origin_set
-    if cookies[:coordinates].is_a? Array
-      origin = cookies[:coordinates][0] + "," + cookies[:coordinates][1]
-    else
-      origin = cookies[:coordinates].split("&")
-      origin = origin[0] + "," + origin[1]
-    end
+    JSON.parse(cookies.encrypted[:coordinates]).join(",")
   end
 
   def weather(postal_code)
