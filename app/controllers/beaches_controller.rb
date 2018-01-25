@@ -5,16 +5,15 @@ class BeachesController < ApplicationController
   end
 
   def create
-    @latitude = params[:latitude]
-    @longitude = params[:longitude]
+    latitude = params[:latitude]
+    longitude = params[:longitude]
 
-    cookies[:coordinates] = [@latitude, @longitude]
+    cookies.encrypted[:coordinates] = JSON.generate([latitude, longitude])
 
     yelp_call = Information.new
-    @response = yelp_call.get_beach_list(@latitude, @longitude)
+    @response = yelp_call.get_beach_list(latitude, longitude)
 
     @origin = origin_set
-
   end
 
   def show
