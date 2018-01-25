@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.9'
+gem 'rails', '4.2'
 ruby '2.2.1'
 
 gem 'bootstrap-sass', '~> 3.0.0.0.rc'
@@ -14,7 +14,7 @@ gem 'yelpster', "1.3.0"
 
 group :development, :test do
   gem 'dotenv-rails', "2.2.1"
-  gem 'konacha', "3.7.0"
+  gem 'konacha', "4.0"
   gem 'pry'
   gem 'pry-rails'
   gem 'quiet_assets'
@@ -22,6 +22,10 @@ group :development, :test do
   gem 'sass-rails',   '>= 4.0'
   gem 'shoulda-matchers', '~> 2.8.0'
   gem 'sqlite3'
+end
+
+group :development do
+  gem 'web-console', '~> 2.0'
 end
 
 group :production do
